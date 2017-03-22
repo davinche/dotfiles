@@ -1,0 +1,13 @@
+foreground = 959dcb
+background = 292d3e
+theme = PaleNightHC
+shell-integration = zsh
+font-family = JetBrainsMono Nerd Font
+font-size = 13
+font-thicken = true
+window-padding-y = 0
+window-padding-x = 0
+window-padding-color = extend
+window-padding-balance = true
+window-save-state = always
+macos-non-native-fullscreen=visible-menu

@@ -1,0 +1,12 @@
+snippet f function
+	function! ${1: functionName}
+		${0}
+	endfunction
+
+snippet vimwikipath
+	{ 'path': '${1:~}',
+	\ 'path_html': '$1${0}',
+	\ 'template_path': '${2:~/Google Drive/+Notes/templates}',
+	\ 'template_default': 'default',
+	\ 'template_ext': '.html',
+	\ 'auto_tags': 1 }

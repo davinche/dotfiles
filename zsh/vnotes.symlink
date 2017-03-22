@@ -1,0 +1,65 @@
+# --------------------------------------------------------------------- 
+# Notes Function
+# --------------------------------------------------------------------- 
+# Usage:
+#   - vnotes -d "folder" -f "filename"
+# --------------------------------------------------------------------- 
+function vnotes() {
+    local ts dname fname npath fullpath OPTIND o vnotes_usage
+    npath="$HOME/Google Drive/Notes"
+    function vnotes_usage() {
+        echo "Usage: vnotes -d <directory name> -f <filename>" 1>&2
+    }
+
+    while getopts ":d:f:" o; do
+        case "$o" in
+            d)
+                dname="${OPTARG}"
+                ;;
+            f)
+                fname="${OPTARG}"
+                ;;
+            \?)
+                vnotes_usage
+                return
+                ;;
+        esac
+    done
+
+    if [ $# -eq 0 ]; then
+        nvim "$npath"
+        return
+    fi
+
+    # Trim Filename / Directory Name
+    fname="$(echo $fname | sed -e 's/^ +//' -e 's/ +$//')"
+    dname="$(echo $dname | sed -e 's/^ +//' -e 's/ +$//')"
+    if [ \( -z "$dname" \) -a \( -z "$fname" \) ]; then
+        vnotes_usage
+        return
+    fi
+
+    ts=$(date "+%Y-%m-%d")
+
+    # Put notes into "misc" if no directory
+    if [ -z "$dname" ]; then
+        dname="misc"
+    fi
+
+    # Default name "untitled" if no filename given
+    if [ -z "$fname" ]; then
+        fname="untitled"
+    fi
+
+    # Only allow Alpha + a few other characters in names
+    dname="$(echo $dname | sed -e 's/[^a-zA-Z0-9_-]/-/')"
+    fname="$ts-$(echo $fname | sed -e 's/[^a-zA-Z0-9_-]/./')"
+    if [[ $fname != *.md ]]; then
+        fname="${fname}.md"
+    fi
+    fullpath="$npath/$dname"
+
+    mkdir -p "$fullpath"
+    cd "$npath"
+    nvim "$fullpath/$fname"
+}

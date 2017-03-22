@@ -1,0 +1,6 @@
+# Customize to your needs...
+if [[ $(uname) == 'Darwin' ]]; then
+  export PATH="/opt/homebrew/bin:$PATH"
+fi
+
+source "$HOME/.davinche/.zshrc"

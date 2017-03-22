@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>%title%</title>
+  <link rel="stylesheet" type="text/css" href="%root_path%css/github-markdown.css" />
+  <link rel="stylesheet" type="text/css" href="%root_path%css/hljs/vs.css" />
+  <script src="%root_path%scripts/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <style>
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="markdown-body">
+    %content%
+  </div>
+  <script src="%root_path%scripts/highlight.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre').forEach((block) => {
+        hljs.highlightBlock(block);
+      });
+    });
+  </script>
+</body>
+</html>

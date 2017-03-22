@@ -1,0 +1,1 @@
+Plug 'Numkil/ag.nvim'

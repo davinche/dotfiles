@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Lastpass Copy Password:
+# Usage: lpget <name of site>
+#
+# Depends on `lpass` (lastpass-cli)
+# Uses rofi for select on multiple matches
+
+search=$1
+if [ -z "$search" ]; then
+    exit 0
+fi
+
+results=()
+while read; do
+    results+=( "$REPLY" )
+done < <(lpass ls | grep -i "$search")
+num_results=${#results[@]}
+
+function not {
+    [ -n "$2" ] && urgency="$2" || urgency=low
+    notify-send -u $urgency -t 3000 -a LastPass "$1"
+}
+
+function ret {
+    res=$(echo $1 | awk -F 'id: ' '{print $2}')
+    res=${res::-1}
+    lpass show -c --password "$res"
+    not "Copied password to clipboard"
+}
+
+function prompt_select {
+    local IFS=$'\n'
+    selection=$(echo "$*" | rofi -dmenu -p LastPass)
+    ret "$selection"
+}
+
+if [ $num_results -eq 0 ]; then
+    not "no results" critical
+elif [ $num_results -eq 1 ]; then
+    ret "${results[0]}"
+else
+    prompt_select "${results[@]}"
+fi

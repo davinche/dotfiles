@@ -1,0 +1,222 @@
+set $mod Mod1
+font pango:Noto Sans, Hack Nerd Font Mono 11
+floating_modifier Mod4
+
+# -----------------------------------------------------------------------------
+# Bindings --------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start rofi
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+p exec rofi -show drun
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split
+bindsym $mod+g split h
+bindsym $mod+v split v
+
+# enter fullscreen
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# scratchpad
+bindsym $mod+x move scratchpad 
+bindsym $mod+shift+x scratchpad show
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+# AUDIO Bindings
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym --release XF86AudioRaiseVolume exec pkill -SIGRTMIN+1 i3blocks
+bindsym --release XF86AudioLowerVolume exec pkill -SIGRTMIN+1 i3blocks
+bindsym --release XF86AudioMute exec pkill -SIGRTMIN+1 i3blocks
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Screenshots
+bindsym --release Print exec flameshot gui
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+# set $web "1:<span size='x-large' rise='-2000'></span> web"
+# set $code "2:<span size='x-large' rise='-2000'></span> code"
+# set $term "3:<span size='x-large' rise='-2000'></span> term"
+# set $chat "4:<span size='x-large' rise='-2000'></span> chat"
+# set $music "5:<span size='x-large' rise='-2000'></span> music"
+# set $ws6 "6:<span size='x-large' rise='-2000'></span> ws6"
+# set $ws7 "7:<span size='x-large' rise='-2000'></span> ws7"
+# set $ws8 "8:<span size='x-large' rise='-2000'></span> ws8"
+# set $ws9 "9:<span size='x-large' rise='-2000'></span> ws9"
+# set $ws10 "10:<span size='x-large' rise='-2000'></span> ws10"
+set $web "1:web"
+set $code "2:code"
+set $term "3:term"
+set $chat "4:chat"
+set $music "5:music"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace $web
+bindsym $mod+2 workspace $code
+bindsym $mod+3 workspace $term
+bindsym $mod+4 workspace $chat
+bindsym $mod+5 workspace $music
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $web
+bindsym $mod+Shift+2 move container to workspace $code
+bindsym $mod+Shift+3 move container to workspace $term
+bindsym $mod+Shift+4 move container to workspace $chat
+bindsym $mod+Shift+5 move container to workspace $music
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# reload
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+set $Locker i3lock && sleep 1
+set $mode_system (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Pause mode "$mode_system"
+# title
+for_window [class=".*"] title_format " %title"
+
+# resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+        # back to normal
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+# -----------------------------------------------------------------------------
+# Colors ----------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+client.focused          #222222 #222222 #ffffff #fba922  #222222
+client.focused_inactive #222222 #222222 #555555 #fba922  #222222
+client.unfocused        #222222 #222222 #555555 #fba922  #222222
+client.urgent           #222222 #fba922 #ffffff #fba922  #fba922
+client.placeholder      #000000 #0c0c0c #ffffff #000000  #0c0c0c
+
+# -----------------------------------------------------------------------------
+# Bar Config ------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+
+bar {
+    # -------------------------------------------------------------------------
+    # Polybar -----------------------------------------------------------------
+    # -------------------------------------------------------------------------
+    i3bar_command $HOME/.config/polybar/launch.sh
+
+    # -------------------------------------------------------------------------
+    # i3blocks ----------------------------------------------------------------
+    # -------------------------------------------------------------------------
+    # font pango:Noto Sans, Hack Nerd Font Mono 11
+    # colors {
+    #     background #1c1c1c
+    #     statusline #ff0000
+    #     separator #1c1c1c
+
+    #     focused_workspace #3d3d3d #3d3d3d #ffffff
+    #     active_workspace #1c1c1c #1c1c1c #929292
+    #     inactive_workspace #1c1c1c #1c1c1c #929292
+    #     urgent_workspace #3d3d3d #fba922 #ffffff
+    # }
+    # status_command i3blocks -c $HOME/.davinche/i3blocks/config
+    # strip_workspace_numbers yes
+}
+
+# -----------------------------------------------------------------------------
+# Display Stuff ---------------------------------------------------------------
+# -----------------------------------------------------------------------------
+
+# exec_always xrandr --output HDMI-0 --mode 1920x1080 --pos 2560x0 --rotate right --output DP-0 --primary --mode 2560x1440 --pos 0x336 --rotate normal --output DVI-D-0 --off --output DP-5 --off --output DP-4 --off --output DP-3 --off --output DP-2 --off --output DP-1 --off 
+# exec nvidia-settings --assign CurrentMetaMode="HDMI-0: nvidia-auto-select +2560+0 {rotation=right, ForceFullCompositionPipeline=On}, DP-0: nvidia-auto-select +0+336 {ForceFullCompositionPipeline=On}"
+
+workspace $term output DP-0
+workspace $web output DP-0
+workspace $code output DP-0
+workspace $chat output HDMI-0
+workspace $music output HDMI-0
+workspace $ws6 output DP-0
+workspace $ws7 output DP-0
+workspace $ws8 output HDMI-0
+workspace $ws9 output HDMI-0
+workspace $ws10 output HDMI-0
+
+# -----------------------------------------------------------------------------
+# GAPS ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+for_window [class="^.$"] border pixel 0
+gaps inner 10
+workspace $term gaps outer 60
+workspace $term gaps inner 50
+workspace $code gaps outer 100
+
+# -----------------------------------------------------------------------------
+# AUTO ASSIGN -----------------------------------------------------------------
+# -----------------------------------------------------------------------------
+assign [class="Firefox Developer Edition"] $web
+assign [class="Slack"] $chat
+assign [class="discord"] $chat
+for_window [class="Spotify"] move to workspace $music
+exec_always feh --bg-fill ~/Wallpapers/wallpaper.jpg
+# exec i3-msg workspace $term; exec i3-sensible-terminal
+exec --no-startup-id compton

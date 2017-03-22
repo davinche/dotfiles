@@ -1,0 +1,49 @@
+require("davinche.globals")
+require("davinche.set")
+require("davinche.lazy")
+require("davinche.telescope")
+require("davinche.lsp")
+-- require('davinche.colorizer')
+
+local nmap = require("davinche.keymap").nmap
+local nnoremap = require("davinche.keymap").nnoremap
+local vnoremap = require("davinche.keymap").vnoremap
+local tnoremap = require("davinche.keymap").tnoremap
+local cnoremap = require("davinche.keymap").cnoremap
+local vmap = require("davinche.keymap").vmap
+
+-- Telescope
+nnoremap("<leader>pf", require("telescope.builtin").find_files)
+nnoremap("<leader>pb", require("telescope.builtin").buffers)
+nnoremap("<leader>ph", require("telescope.builtin").help_tags)
+nnoremap("<leader>pv", require("davinche.telescope").search_dotfiles)
+
+-- Easy Align
+vmap("<leader>a", "<Plug>(EasyAlign)")
+vmap("<leader>la", "<Plug>(LiveEasyAlign)")
+
+-- Fugitive
+nnoremap("<leader>g", "<cmd>:G<CR>")
+
+-- Terminal
+tnoremap("<esc>", [[<C-\><C-n>]])
+
+-- Keymapping
+vmap("<", "<gv")
+vmap(">", ">gv")
+nmap("j", "gj")
+nmap("k", "gk")
+nnoremap("dd", "ddk")
+nnoremap("*", "*``")
+nnoremap("<leader>cd", "<cmd>:lcd %:p:h<CR>")
+nnoremap("/", "/\\v")
+cnoremap("s/", "s/\\v")
+cnoremap("%s/", "%s/\\v")
+
+-- commenting
+nnoremap("<leader>lc", require("davinche.custom").LineComment)
+nnoremap("<leader>bc", require("davinche.custom").BlockComment)
+
+-- yanking
+nnoremap("<leader>y", '"+y')
+vnoremap("<leader>y", '"+y')

@@ -1,0 +1,10 @@
+/tmp/*
+*.so
+*.swp
+*.zip
+**/.DS_STORE
+node_modules/
+bower_components/
+.git/
+.svn/
+

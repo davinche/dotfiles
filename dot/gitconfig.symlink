@@ -1,0 +1,67 @@
+[user]
+	name = Vincent Cheung
+	email = hello@mynameisvincent.com
+
+[alias]
+	c = commit -v
+	ca = commit -v --amend
+	cm = commit -v -m
+	co = checkout
+	st = status
+	r = rebase
+	rs = rebase --skip
+	rc = rebase --continue
+	rt = rebase --theirs
+	ro = rebase --ours
+	b = branch
+	fo = fetch origin
+	rh = reset --hard
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	sl = stash list
+	sa = stash save --include-untracked
+	undo = reset HEAD~1 --mixed
+	ps = push
+	pl = pull
+	a = add
+	d = diff
+	dt = difftool
+	dc = diff --cached
+	nca = commit --amend --no-edit
+	cpc = cherry-pick --continue
+	cp = cherry-pick
+	wt = worktree
+	wtl = worktree list
+	wtr = worktree remove
+
+[push]
+	default = simple
+
+[core]
+	excludesfile = ~/.gitignore
+	mergeoptions = --no-ff
+	editor = nvim
+
+[rerere]
+	enabled = true
+	autoupdate = true
+[color]
+	ui = true
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+	ff = only
+[mergetool]
+	prompt = false
+[diff]
+	tool = icdiff
+[difftool]
+	prompt = false
+[difftool "icdiff"]
+	cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	rebase = false

@@ -1,0 +1,13 @@
+{
+    Unit: {
+        length: 'millimeter',
+    },
+    CommandPalette: {
+        favorites: [
+            'command:center-circle',
+        ],
+    },
+    Grid: {
+        size: 120,
+    },
+}

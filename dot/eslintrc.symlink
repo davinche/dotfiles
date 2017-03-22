@@ -1,0 +1,15 @@
+{
+    "extends": "eslint:recommended",
+    "env": {
+        "es6": true,
+        "browser": true,
+        "node": true
+    },
+    "rules": {
+        "semi": [2, "always"],
+        "eqeqeq": 1
+    },
+    "parseOptions": {
+        "sourceType": "module"
+    }
+}

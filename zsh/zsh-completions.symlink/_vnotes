@@ -1,0 +1,25 @@
+#compdef vnotes
+_cmd() {
+    local -a options
+    options=('-f[Name of the file]' '-d[Name of the folder to store notes in]:folder:->folders')
+    _arguments $options
+    case "$state" in
+        folders)
+            local -a note_dirs
+            local -a dir_names
+            note_dirs=($(ls -d $HOME/GD/Notes/*))
+            dir_names=( )
+            for d in "${note_dirs[@]}"
+            do
+                if [[ $d != '.' ]]; then
+                    dir_names+=( $(basename "$d") )
+                fi
+            done
+            if [ -z $dir_names ]; then
+                dir_names+=( 'misc' )
+            fi
+            _values 'Existing Folders' $dir_names
+            ;;
+    esac
+}
+_cmd "$@"

@@ -29,6 +29,7 @@ packages=(
     pulseaudio-alsa
     pulseaudio-jack
     python2-lxml
+    python2-scour
     qjackctl
     rofi                # app runner
     speedcrunch         # calculator

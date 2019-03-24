@@ -13,6 +13,8 @@ packages=(
     prettier-init
     typescript
     yarn
+    sequelize-cli
+    dotenv-cli
 )
 
 npm i -g ${packages[@]}

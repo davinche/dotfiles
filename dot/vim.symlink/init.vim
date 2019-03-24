@@ -61,6 +61,7 @@ set nowritebackup
 set noswapfile
 set showmode
 set smartcase
+set updatetime=300
 " set completeopt=menu,menuone,preview
 if has('persistent_undo')
     let &undodir = s:vimdir . '.undodir/'

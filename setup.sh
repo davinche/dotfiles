@@ -42,7 +42,6 @@ if [[ $(uname) == 'Darwin' ]]; then
 
     # Cask Installations
     export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-    brew install caskroom/cask/brew-cask
     brew cask install google-chrome
     brew cask install caskroom/versions/firefox-developer-edition
     brew cask install basictex
@@ -52,9 +51,10 @@ if [[ $(uname) == 'Darwin' ]]; then
     brew cask install quicksilver
     brew cask install sequel-pro
     brew cask install db-browser-for-sqlite
+    brew cask install slack
 
     # Fonts
-    brew tap caskroom/fonts
+    brew tap homebrew/cask-fonts
     brew cask install font-sourcecodepro-nerd-font-mono
     brew cask install font-firacode-nerd-font-mono
     brew cask install font-hack-nerd-font-mono

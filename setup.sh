@@ -17,11 +17,8 @@ if [[ $(uname) == 'Darwin' ]]; then
 
     # VIM + TMUX --------------------------------------------------------------
     brew install tmux
-    brew install reattach-to-user-namespace --wrap-pbcopy-and-pbpaste
     brew install neovim/neovim/neovim
-    brew install macvim --with-override-system-vim --with-lua
     brew install davinche/tools/gmux
-    brew install go-delve/delve/delve
 
     # Kubernetes ------------------------------------------------------------------
     brew install kubectl
@@ -40,6 +37,10 @@ if [[ $(uname) == 'Darwin' ]]; then
     brew install autojump
     # brew install fzf && /usr/local/opt/fzf/install --all
 
+    # Dart
+    brew tap dart-lang/dart
+    brew install dart
+
     # Cask Installations
     export HOMEBREW_CASK_OPTS="--appdir=/Applications"
     brew cask install google-chrome
@@ -52,6 +53,7 @@ if [[ $(uname) == 'Darwin' ]]; then
     brew cask install sequel-pro
     brew cask install db-browser-for-sqlite
     brew cask install slack
+    brew cask install postman
 
     # Fonts
     brew tap homebrew/cask-fonts

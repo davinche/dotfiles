@@ -1,1 +1,1 @@
-Plug 'nelstrom/vim-markdown-folding', { 'for': ['*markdown', '*vimwiki'] }
+Plug 'nelstrom/vim-markdown-folding', { 'for': ['*markdown'] }

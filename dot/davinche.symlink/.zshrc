@@ -30,12 +30,12 @@ export PATH=$GOPATH/bin:$PATH
 # -----------------------------------------------------------------------------
 # Python ----------------------------------------------------------------------
 # -----------------------------------------------------------------------------
-if [ -d "$HOME/.pyenv" ]; then
-    export PATH="$HOME/.pyenv/bin:$PATH"
-    export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-fi
+# if [ -d "$HOME/.pyenv" ]; then
+#     export PATH="$HOME/.pyenv/bin:$PATH"
+#     export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+#     eval "$(pyenv init -)"
+#     eval "$(pyenv virtualenv-init -)"
+# fi
 
 # -----------------------------------------------------------------------------
 # Dart ------------------------------------------------------------------------
@@ -112,6 +112,7 @@ alias workon="pyenv activate"
 alias workoff="pyenv deactivate"
 alias gitc="git b --merged | grep -v \"\*\" | xargs git b -D"
 alias g="git"
+alias gd="git diff"
 alias wip="git add . && git commit -m WIP"
 alias mux="gmux"
 alias s="sequelize"

@@ -1,24 +1,29 @@
 function! InstallDeps(info)
     if a:info.status == 'installed' || a:info.force
         let extensions = [
-            \ 'coc-json',
-            \ 'coc-tsserver',
+            \ 'coc-css',
+            \ 'coc-emmet',
+            \ 'coc-flutter',
+            \ 'coc-git',
+            \ 'coc-go',
             \ 'coc-highlight',
             \ 'coc-html',
-            \ 'coc-css',
-            \ 'coc-vetur',
-            \ 'coc-emmet',
+            \ 'coc-json',
+            \ 'coc-python',
             \ 'coc-rls',
-            \ 'coc-solargraph'
+            \ 'coc-solargraph',
+            \ 'coc-tsserver',
+            \ 'coc-vetur',
+            \ 'coc-yaml',
+            \ 'coc-yank'
         \ ]
-        call coc#util#install()
         call coc#util#install_extension(extensions)
     endif
 endfunction
 
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
-Plug 'neoclide/coc.nvim', { 'tag': '*', 'do': function('InstallDeps') }
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': function('InstallDeps')}
 
 "PUM"
 inoremap <silent><expr> <TAB>
@@ -40,6 +45,9 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
+nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
+
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if &filetype == 'vim'

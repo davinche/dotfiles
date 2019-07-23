@@ -18,6 +18,7 @@ let g:python3_host_prog = expand('~') . '/.pyenv/versions/neovim3/bin/python'
 call plug#begin(s:vimdir . 'plugged')
 runtime! pconf/*.vim
 runtime! uconf/*.vim
+runtime! macros/matchit.vim
 call plug#end()
 
 " -----------------------------------------------------------------------------
@@ -28,12 +29,6 @@ colorscheme palenight
 let g:lightline.colorscheme = 'palenight'
 
 " colorscheme gruvbox
-" colorscheme nord
-" let g:nord_comment_brightness = 8
-" colorscheme hybrid_material
-" colorscheme hybrid_reverse
-" colorscheme vim-material
-" colorscheme material
 
 if has('termguicolors')
     set termguicolors
